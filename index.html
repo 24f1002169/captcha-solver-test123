@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Captcha Solver</title>
+<style>
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+#captchaImage {
+  border: 1px solid #ccc;
+}
+</style>
+</head>
+<body>
+  <h1>Captcha Solver</h1>
+
+  <img id="captchaImage" src="sample.png" alt="Captcha Image">
+  <br>
+  <p>Captcha URL: <span id="captchaUrl"></span></p>
+  <p>Solved Captcha: <span id="solvedCaptcha"></span></p>
+
+  <script>
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    const imageUrl = getParameterByName('url') || 'sample.png';
+    document.getElementById('captchaUrl').textContent = imageUrl;
+    document.getElementById('captchaImage').src = imageUrl;
+
+    // Dummy solver (replace with actual solver logic)
+    setTimeout(() => {
+      document.getElementById('solvedCaptcha').textContent = "ABCD"; //Example solution
+    }, 2000); // Simulate solving time
+  </script>
+</body>
+</html>
